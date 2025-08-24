@@ -127,6 +127,8 @@ vim.cmd([[cab cc CodeCompanion]])
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "[E]xplorer: Toggle NvimTree" })
 vim.keymap.set("n", "<leader>+", ":NvimTreeResize 50<CR>", { desc = "Increase NvimTree width" })
 vim.keymap.set("n", "<leader>-", ":NvimTreeResize 30<CR>", { desc = "Decrease NvimTree width" })
+
+-- error/diagnostics undert the curser
 vim.keymap.set("n", "<leader>de", function()
 	local opts = {
 		focusable = true,
@@ -139,7 +141,10 @@ vim.keymap.set("n", "<leader>de", function()
 		return
 	end
 
-	local float_buf, float_win = vim.diagnostic.open_float(nil, opts)
+	local float_win = vim.diagnostic.open_float(nil, opts)
+	if not float_win then
+		return
+	end
 
 	-- Apply pitch black background and border
 	vim.api.nvim_set_hl(0, "MyDiagnosticFloat", { bg = "#000000" })
@@ -152,7 +157,7 @@ vim.keymap.set("n", "<leader>de", function()
 end, { desc = "Show diagnostics under cursor (focused, black float)" })
 
 vim.keymap.set("n", "<leader>nd", function()
-	require("notify").dismiss()
+	require("notify").dismiss({ silent = true, pending = true })
 end, { desc = "Dismiss notifications" })
 
 local function toggle_diffview()
