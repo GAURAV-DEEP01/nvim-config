@@ -1,92 +1,5 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
-
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving Kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
-
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
-
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
-
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
-    (If you already know the Neovim basics, you can skip this step.)
-
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua.
-
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
-
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite Neovim features.
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not exactly sure of what you're looking for.
-
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or Neovim features used in Kickstart.
-
-   NOTE: Look for lines like this
-
-    Throughout the file. These are for you, the reader, to help you understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your Neovim config.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
---]]
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -95,9 +8,6 @@ vim.g.have_nerd_font = false
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.numberwidth = 1
@@ -207,7 +117,7 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set({ "i", "n", "v" }, "<A-r>", "<C-^>", { noremap = true, silent = true })
 
-vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<A-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<LocalLeader>at", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
 vim.keymap.set("v", "<LocalLeader>aa", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
@@ -398,22 +308,22 @@ require("lazy").setup({
 
 			-- Set background and UI elements slightly lighter than pitch black
 			vim.defer_fn(function()
-				vim.cmd([[highlight Normal guibg=#141414]])
-				vim.cmd([[highlight NormalNC guibg=#101010]])
-				vim.cmd([[highlight SignColumn guibg=#141414]])
-				vim.cmd([[highlight LineNr guibg=#141414]])
-				vim.cmd([[highlight FoldColumn guibg=#141414]])
-				vim.cmd([[highlight VertSplit guibg=NONE guifg=#333333]])
+				vim.cmd([[highlight Normal guibg=#101010]])
+				vim.cmd([[highlight NormalNC guibg=#0c0c0c]])
+				vim.cmd([[highlight SignColumn guibg=#101010]])
+				vim.cmd([[highlight LineNr guibg=#101010]])
+				vim.cmd([[highlight FoldColumn guibg=#101010]])
+				vim.cmd([[highlight VertSplit guibg=NONE guifg=#2a2a2a]])
 				vim.cmd([[highlight WinSeparator guibg=NONE guifg=NONE]])
-				vim.cmd([[highlight Comment guifg=#505050]])
-				vim.cmd([[highlight DiffText guibg=#2a2a2a guifg=NONE]]) -- Less intense than #303030
-				vim.cmd([[highlight DiffChange guibg=#202020 guifg=NONE]]) -- Even softer for changed lines
-				vim.cmd([[highlight DiffAdd guibg=#1c2c1c guifg=NONE]]) -- Dark greenish add
-				vim.cmd([[highlight DiffDelete guibg=#2c1c1c guifg=NONE]]) -- Dark reddish delete
+				vim.cmd([[highlight Comment guifg=#444444]])
+				vim.cmd([[highlight DiffText guibg=#252525 guifg=NONE]]) -- Less intense than #2a2a2a
+				vim.cmd([[highlight DiffChange guibg=#1a1a1a guifg=NONE]]) -- Even softer for changed lines
+				vim.cmd([[highlight DiffAdd guibg=#182818 guifg=NONE]]) -- Slightly darker greenish add
+				vim.cmd([[highlight DiffDelete guibg=#281818 guifg=NONE]]) -- Slightly darker reddish delete
 
 				-- Optional: soften file panel in Diffview
-				vim.cmd([[highlight DiffviewFilePanelNormal guibg=#141414]])
-				vim.cmd([[highlight DiffviewFilePanelTitle guifg=#666666]])
+				vim.cmd([[highlight DiffviewFilePanelNormal guibg=#101010]])
+				vim.cmd([[highlight DiffviewFilePanelTitle guifg=#555555]])
 			end, 10)
 
 			-- Soften error message appearance
@@ -457,9 +367,16 @@ require("lazy").setup({
 			end
 			vim.api.nvim_set_keymap(
 				"n",
-				"<leader>gc",
+				"<leader>gcc",
 				[[:lua CloseNvimTree("Git commit")<CR>]],
 				{ desc = "Git commit", noremap = true, silent = true }
+			)
+
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>gcs",
+				[[:lua CloseNvimTree("Git commit --signoff")<CR>]],
+				{ desc = "Git commit with signoff", noremap = true, silent = true }
 			)
 
 			vim.api.nvim_set_keymap(
@@ -567,6 +484,7 @@ require("lazy").setup({
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
+				lazy = true, -- Don't load unless used
 				flavour = "macchiato",
 				background = {
 					light = "latte",
@@ -720,31 +638,6 @@ require("lazy").setup({
 	-- 		"nvim-treesitter/nvim-treesitter",
 	-- 	},
 	-- },
-	-- markdown
-	-- {
-	-- 	"MeanderingProgrammer/render-markdown.nvim",
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-	-- 	-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-	-- 	-- dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-	-- 	---@module 'render-markdown'
-	-- 	---@type render.md.UserConfig
-	-- 	opts = {},
-	-- 	config = function()
-	-- 		vim.api.nvim_create_autocmd("FileType", {
-	-- 			pattern = "markdown",
-	-- 			callback = function()
-	-- 				local keymap = vim.keymap.set
-	-- 				keymap("n", "<leader>h1", "ggO# <Esc>j", { buffer = true, desc = "Insert H1 Heading" })
-	-- 				keymap("n", "<leader>h2", "ggO## <Esc>j", { buffer = true, desc = "Insert H2 Heading" })
-	-- 				keymap("n", "<leader>h3", "ggO### <Esc>j", { buffer = true, desc = "Insert H3 Heading" })
-	-- 				keymap("n", "<leader>b", "viw<esc>a**<esc>bi**<esc>lel", { buffer = true, desc = "Bold text" })
-	-- 				keymap("n", "<leader>i", "viw<esc>a*<esc>bi*<esc>lel", { buffer = true, desc = "Italic text" })
-	-- 				keymap("n", "<leader>l", "o- <esc>", { buffer = true, desc = "Insert list item" })
-	-- 				keymap("n", "<leader>c", "o```<esc>o```<esc>kA", { buffer = true, desc = "Insert code block" })
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && npm install",
@@ -813,23 +706,64 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"NvChad/nvim-colorizer.lua",
+		opts = {
+			filetypes = {
+				"css",
+				"scss",
+				"html",
+				"javascript",
+				"typescript",
+				"javascriptreact",
+				"typescriptreact",
+				"astro",
+			},
+			user_default_options = {
+				tailwind = true,
+				css = true,
+				names = true,
+				mode = "virtualtext", -- ← show colored square instead of text
+				virtualtext = "■", -- ← customize the square character
+			},
+		},
+		config = function(_, opts)
+			require("colorizer").setup(opts)
+		end,
+	},
+	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			"rcarriga/nvim-dap-ui", -- Debugging UI
-			"jay-babu/mason-nvim-dap.nvim", -- Mason integration for DAP
-			"nvim-neotest/nvim-nio", -- Fix for missing nvim-nio
+			"rcarriga/nvim-dap-ui",
+			"jay-babu/mason-nvim-dap.nvim",
+			"nvim-neotest/nvim-nio",
 		},
 		config = function()
 			local dap = require("dap")
+			local dapui = require("dapui")
 
-			-- 🔹 Setup LLDB Adapter
+			require("mason-nvim-dap").setup({
+				ensure_installed = { "delve" }, -- optional
+				automatic_installation = true,
+			})
+
+			-- ✅ DAP UI setup
+			dapui.setup()
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+
+			-- ✅ LLDB for C/C++
 			dap.adapters.lldb = {
 				type = "executable",
-				command = "/usr/lib/llvm-14/bin/lldb-vscode", -- Update this path!
+				command = "/usr/lib/llvm-14/bin/lldb-vscode", -- adjust if needed
 				name = "lldb",
 			}
-
-			-- 🔹 Default Configuration for C/C++
 			dap.configurations.cpp = {
 				{
 					name = "Launch",
@@ -845,26 +779,85 @@ require("lazy").setup({
 			}
 			dap.configurations.c = dap.configurations.cpp
 
-			-- **Add Dot Symbol for Breakpoints**
-			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
-			vim.fn.sign_define("DapStopped", { text = "→", texthl = "DapStopped", linehl = "", numhl = "" })
+			-- ✅ Go (Delve)
+			dap.adapters.go = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = "dlv",
+					args = { "dap", "-l", "127.0.0.1:${port}" },
+				},
+			}
+			dap.configurations.go = {
+				{
+					type = "go",
+					name = "Debug (main)",
+					request = "launch",
+					program = "${file}",
+				},
+				{
+					type = "go",
+					name = "Debug Test (file)",
+					request = "launch",
+					mode = "test",
+					program = "${file}",
+				},
+			}
 
-			-- Key mappings for debugging
-			vim.keymap.set("n", "<F5>", function()
+			-- ✅ JavaScript/TypeScript (vscode-js-debug)
+			dap.adapters["pwa-node"] = {
+				type = "server",
+				host = "localhost",
+				port = "${port}",
+				executable = {
+					command = "node",
+					args = {
+						vim.fn.stdpath("data") .. "/dap-js-debug/js-debug/src/dapDebugServer.js",
+						"${port}",
+					},
+				},
+			}
+
+			for _, lang in ipairs({ "typescript", "javascript" }) do
+				dap.configurations[lang] = {
+					{
+						type = "pwa-node",
+						request = "launch",
+						name = "Launch file",
+						program = "${file}",
+						cwd = "${workspaceFolder}",
+					},
+					{
+						type = "pwa-node",
+						request = "attach",
+						name = "Attach to process",
+						processId = require("dap.utils").pick_process,
+						cwd = "${workspaceFolder}",
+					},
+				}
+			end
+
+			-- ✅ Signs
+			vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint" })
+			vim.fn.sign_define("DapStopped", { text = "→", texthl = "DapStopped" })
+
+			-- ✅ Keybindings (Leader + 1–5)
+			local map = vim.keymap.set
+			map("n", "<Leader>1", function()
 				dap.continue()
-			end, { desc = "Continue Debugging" })
-			vim.keymap.set("n", "<F10>", function()
+			end, { desc = "Debug: Continue" })
+			map("n", "<Leader>2", function()
 				dap.step_over()
-			end, { desc = "Step Over" })
-			vim.keymap.set("n", "<F11>", function()
+			end, { desc = "Debug: Step Over" })
+			map("n", "<Leader>3", function()
 				dap.step_into()
-			end, { desc = "Step Into" })
-			vim.keymap.set("n", "<F12>", function()
+			end, { desc = "Debug: Step Into" })
+			map("n", "<Leader>4", function()
 				dap.step_out()
-			end, { desc = "Step Out" })
-			vim.keymap.set("n", "<Leader>db", function()
+			end, { desc = "Debug: Step Out" })
+			map("n", "<Leader>5", function()
 				dap.toggle_breakpoint()
-			end, { desc = "Toggle Breakpoint" })
+			end, { desc = "Debug: Toggle Breakpoint" })
 		end,
 	},
 	-- {
@@ -878,24 +871,42 @@ require("lazy").setup({
 	-- 	end,
 	-- },
 	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require("lspconfig")
+
+			-- Force re-setup of yamlls to allow multi-docs
+			lspconfig.yamlls.setup({
+				on_attach = function(client, bufnr)
+					print("YAML LSP attached with multi-doc enabled")
+				end,
+				settings = {
+					yaml = {
+						validate = true,
+						schemaStore = { enable = true },
+						customTags = {},
+						singleDocument = false, -- allow multiple docs separated by ---
+					},
+				},
+			})
+		end,
+	},
+	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-		},
-		opts = {
-			display = {
-				action_palette = {
-					width = 95,
-					height = 10,
-					prompt = "Prompt ",
-					provider = "default", -- can be "default", "telescope", or "mini_pick"
-					opts = {
-						show_default_actions = true,
-						show_default_prompt_library = true,
-					},
+			{
+				"MeanderingProgrammer/render-markdown.nvim",
+				ft = { "markdown", "codecompanion" },
+				opts = {
+					render_modes = true, -- Render in all modes
+					sign = { enabled = false }, -- Disable status column signs
 				},
 			},
+		},
+		opts = {
+			-- any other codecompanion settings
 		},
 	},
 	{
@@ -1118,7 +1129,6 @@ require("lazy").setup({
 			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
-	-- My custom plugins autopair multicursor
 	{
 		"windwp/nvim-autopairs",
 		opts = {},
