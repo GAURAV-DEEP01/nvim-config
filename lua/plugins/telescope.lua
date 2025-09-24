@@ -55,19 +55,22 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--   },
 			-- },
 			--
-			pickers = {
-				buffers = {
-					show_all_buffers = true,
-					sort_lastused = true,
-					mappings = {
-						i = { ["<c-d>"] = actions.delete_buffer },
-					},
-					-- Highlight unsaved buffers
-					get_status_text = function(bufnr)
-						return vim.bo[bufnr].modified and " ●" or ""
-					end,
-				},
-			},
+			-- pickers = {
+			-- 	buffers = {
+			-- 		show_all_buffers = true,
+			-- 		sort_lastused = true,
+			-- 		mappings = {
+			-- 			i = { ["<c-d>"] = actions.delete_buffer },
+			-- 		},
+			-- 		-- Highlight unsaved buffers
+			-- 		get_status_text = function(bufnr)
+			-- 			if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+			-- 				return ""
+			-- 			end
+			-- 			return vim.bo[bufnr].modified and " ●" or ""
+			-- 		end,
+			-- 	},
+			-- },
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),

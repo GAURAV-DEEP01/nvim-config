@@ -46,10 +46,10 @@ return { -- Main LSP Configuration
 		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 		--    function will be executed to configure the current buffer
 
-		require("lspconfig").gopls.setup({
-			capabilities = require("cmp_nvim_lsp").default_capabilities(),
-			settings = { gopls = { gofumpt = true, staticcheck = true } },
-		})
+		-- require("lspconfig").gopls.setup({
+		-- 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		-- 	settings = { gopls = { gofumpt = true, staticcheck = true } },
+		-- })
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -163,6 +163,10 @@ return { -- Main LSP Configuration
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+		-- Fix for position encoding warning - explicitly set position encoding
+		capabilities.general = capabilities.general or {}
+		capabilities.general.positionEncodings = { "utf-16", "utf-8" }
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.

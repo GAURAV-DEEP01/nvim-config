@@ -1,5 +1,21 @@
 return {
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+
+	-- in your Lazy.nvim plugin spec
+	{
+		"dfinity/vscode-motoko",
+		build = "mkdir -p ~/.local/share/nvim/site/pack/plugins/start/motoko-syntax && cp -r syntaxes ~/.local/share/nvim/site/pack/plugins/start/motoko-syntax",
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		opts = {
+			ensure_installed = { "motoko" },
+			highlight = {
+				enable = true,
+			},
+		},
+	},
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -28,6 +44,14 @@ return {
 			scope = { enabled = false }, -- disables indent scope highlights
 		},
 		ft = { "yaml", "yml" }, -- or remove this to apply globally
+	},
+	{
+		"towolf/vim-helm",
+		ft = { "helm", "yaml" },
+	},
+	{
+		"b0o/SchemaStore.nvim",
+		lazy = true,
 	},
 	{ "Bilal2453/luvit-meta", lazy = true },
 	{

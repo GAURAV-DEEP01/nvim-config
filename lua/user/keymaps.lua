@@ -16,13 +16,18 @@ vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set({ "i", "n", "v" }, "<A-r>", "<C-^>", { noremap = true, silent = true })
 
-vim.keymap.set({ "n", "v" }, "<A-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<LocalLeader>at", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-vim.keymap.set("v", "<LocalLeader>aa", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- barely ever use these
+-- vim.keymap.set({ "n", "v" }, "<A-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "v" }, "<LocalLeader>at", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("v", "<LocalLeader>aa", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+
+vim.keymap.set({ "n", "v" }, "<leader>p", '"_dp', { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>p", '"_dP', { noremap = true, silent = true })
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
 
+-- nvim tree
 vim.keymap.set("n", "<leader>e", function()
 	require("nvim-tree").toggle()
 end, { desc = "[E]xplorer: Toggle NvimTree" })
@@ -34,7 +39,6 @@ vim.keymap.set("n", "<leader>de", function()
 	local opts = {
 		focusable = true,
 		border = "rounded",
-		-- Removed `close_events` to avoid auto-closing
 	}
 
 	local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line(".") - 1 })
@@ -42,10 +46,11 @@ vim.keymap.set("n", "<leader>de", function()
 		return
 	end
 
-	local float_win = vim.diagnostic.open_float(nil, opts)
-	if not float_win then
-		return
-	end
+	-- Open diagnostic float
+	vim.diagnostic.open_float(nil, opts)
+
+	-- Get the most recent floating window
+	local float_win = vim.api.nvim_get_current_win()
 
 	-- Apply pitch black background and border
 	vim.api.nvim_set_hl(0, "MyDiagnosticFloat", { bg = "#000000" })
