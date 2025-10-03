@@ -1,7 +1,5 @@
 return {
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
-	-- in your Lazy.nvim plugin spec
 	{
 		"dfinity/vscode-motoko",
 		build = "mkdir -p ~/.local/share/nvim/site/pack/plugins/start/motoko-syntax && cp -r syntaxes ~/.local/share/nvim/site/pack/plugins/start/motoko-syntax",
@@ -28,22 +26,19 @@ return {
 	},
 	{
 		"tpope/vim-surround",
-		event = "VeryLazy", -- You can adjust the event trigger
+		event = "VeryLazy",
 	},
 	{
 		"terryma/vim-multiple-cursors",
-		config = function()
-			-- Optional configuration can be added here
-		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
 		opts = {
-			indent = { char = "┊" }, -- or "▏", "┊", etc. for a subtle look
+			indent = { char = "┊" }, -- or "▏", "┊"
 			scope = { enabled = false }, -- disables indent scope highlights
 		},
-		ft = { "yaml", "yml" }, -- or remove this to apply globally
+		ft = { "yaml", "yml" },
 	},
 	{
 		"towolf/vim-helm",

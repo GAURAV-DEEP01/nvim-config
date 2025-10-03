@@ -5,7 +5,7 @@ return {
 		name = "rose-pine",
 		config = function()
 			require("rose-pine").setup({
-				variant = "main", -- rich contrast
+				variant = "main",
 				disable_background = false,
 				disable_float_background = true,
 				disable_italics = true,
@@ -23,14 +23,31 @@ return {
 				vim.cmd([[highlight VertSplit guibg=NONE guifg=#2a2a2a]])
 				vim.cmd([[highlight WinSeparator guibg=NONE guifg=NONE]])
 				vim.cmd([[highlight Comment guifg=#444444]])
-				vim.cmd([[highlight DiffText guibg=#252525 guifg=NONE]]) -- Less intense than #2a2a2a
-				vim.cmd([[highlight DiffChange guibg=#1a1a1a guifg=NONE]]) -- Even softer for changed lines
-				vim.cmd([[highlight DiffAdd guibg=#182818 guifg=NONE]]) -- Slightly darker greenish add
-				vim.cmd([[highlight DiffDelete guibg=#281818 guifg=NONE]]) -- Slightly darker reddish delete
+				vim.cmd([[highlight DiffText guibg=#252525 guifg=NONE]])
+				vim.cmd([[highlight DiffChange guibg=#1a1a1a guifg=NONE]])
+				vim.cmd([[highlight DiffAdd guibg=#182818 guifg=NONE]])
+				vim.cmd([[highlight DiffDelete guibg=#281818 guifg=NONE]])
 
-				-- Optional: soften file panel in Diffview
+				-- General backgrounds
+				vim.cmd([[highlight DiffviewNormal guibg=#101010]])
 				vim.cmd([[highlight DiffviewFilePanelNormal guibg=#101010]])
-				vim.cmd([[highlight DiffviewFilePanelTitle guifg=#555555]])
+				vim.cmd([[highlight DiffviewFilePanelTitle guifg=#555555 guibg=#101010]])
+				vim.cmd([[highlight DiffviewCursorLine guibg=#1a1a1a]])
+
+				-- Borders / separators
+				vim.cmd([[highlight DiffviewVertSplit guibg=NONE guifg=#2a2a2a]])
+				vim.cmd([[highlight DiffviewWinSeparator guibg=NONE guifg=#2a2a2a]])
+
+				-- Status column backgrounds (left/right files)
+				vim.cmd([[highlight DiffviewSignColumn guibg=#101010]])
+				vim.cmd([[highlight DiffviewFilePanelCounter guifg=#555555 guibg=#101010]])
+				vim.cmd([[highlight DiffviewFilePanelPath guifg=#888888 guibg=#101010]])
+
+				-- If inline diffs differ slightly, enforce same as core diffs:
+				vim.cmd([[highlight DiffAdd guibg=#182818 guifg=NONE]])
+				vim.cmd([[highlight DiffChange guibg=#1a1a1a guifg=NONE]])
+				vim.cmd([[highlight DiffDelete guibg=#281818 guifg=NONE]])
+				vim.cmd([[highlight DiffText guibg=#252525 guifg=NONE]])
 			end, 10)
 
 			-- Soften error message appearance
